@@ -36,10 +36,17 @@
 
 <script>
 import BaseForm from './BaseForm.vue';
+import { Accessories, Comments, Documents, Tab } from '@enso-ui/bulma';
 
 export default {
     name: 'Edit',
 
-    components: { BaseForm },
+    components: { Accessories, BaseForm, Comments, Documents, Tab },
+
+    computed: {
+        id() {
+            return Number.parseInt(this.$route.params.payment, 10);
+        },
+    },
 };
 </script>
