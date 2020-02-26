@@ -111,7 +111,7 @@ export default {
             });
         },
         downloadPdf($event) {
-            if ($event.type === 'Receipt') {
+            if (`${$event.typeCode}` === this.enums.paymentTypes.Receipt) {
                 window.open(this.route('financials.clients.payments.pdf', { payment: $event.id }), '_blank');
 
                 return;
