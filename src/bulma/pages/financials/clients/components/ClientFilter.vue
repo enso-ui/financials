@@ -92,5 +92,9 @@ export default {
             }
         },
     },
+
+    created() {
+        this.clientId = this.filters.person_id || this.filters.company_id;
+    }
 };
 </script>
