@@ -65,12 +65,15 @@ export default {
     },
 
     watch: {
-        filters() {
-            const clientId = this.filters.person_id || this.filters.company_id;
+        filters: {
+            handler() {
+                const clientId = this.filters.person_id || this.filters.company_id;
 
-            if (clientId) {
-                this.clientId = clientId;
-            }
+                if (clientId) {
+                    this.clientId = clientId;
+                }
+            },
+            immediate: true,
         },
     },
 
@@ -92,9 +95,5 @@ export default {
             }
         },
     },
-
-    created() {
-        this.clientId = this.filters.person_id || this.filters.company_id;
-    }
 };
 </script>
