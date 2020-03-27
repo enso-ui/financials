@@ -11,7 +11,6 @@
             <div class="column is-narrow">
                 <enso-date-filter class="box raises-on-hover"
                     v-model="params.dateInterval"
-                    default="thirtyDays"
                     :name="i18n('Due Date')"
                     :interval="intervals"/>
             </div>
@@ -53,7 +52,7 @@ export default {
     inject: ['i18n'],
 
     data: () => ({
-        apiVersion: 1.1,
+        apiVersion: 1.2,
         ready: false,
         supplierParams: { is_supplier: true },
         filters: {
@@ -67,7 +66,7 @@ export default {
             max: null,
         },
         params: {
-            dateInterval: 'thirtyDays',
+            dateInterval: 'thisMonth',
         },
     }),
 

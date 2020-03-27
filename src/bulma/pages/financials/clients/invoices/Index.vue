@@ -9,7 +9,6 @@
             <div class="column is-narrow">
                 <enso-date-filter class="box raises-on-hover"
                     v-model="params.dateInterval"
-                    default="thirtyDays"
                     :name="i18n('Due Date')"
                     :interval="intervals"/>
             </div>
@@ -69,7 +68,7 @@ export default {
     inject: ['i18n', 'route'],
 
     data: () => ({
-        apiVersion: 1.1,
+        apiVersion: 1.2,
         ready: false,
         filters: {
             client_invoices: {
@@ -85,7 +84,7 @@ export default {
         },
         params: {
             client: null,
-            dateInterval: 'thirtyDays',
+            dateInterval: 'thisMonth',
         },
     }),
 
