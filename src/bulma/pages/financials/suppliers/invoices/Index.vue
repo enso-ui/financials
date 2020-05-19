@@ -11,7 +11,7 @@
             <div class="column is-narrow">
                 <enso-date-filter class="box raises-on-hover"
                     v-model="params.dateInterval"
-                    :name="i18n('Due Date')"
+                    :name="i18n('Date')"
                     :interval="intervals"/>
             </div>
             <div class="column is-narrow">
@@ -75,7 +75,7 @@ export default {
         tableIntervals() {
             return {
                 supplier_invoices: {
-                    due_date: {
+                    date: {
                         min: this.intervals.min,
                         max: this.intervals.max,
                         dateFormat: null,
