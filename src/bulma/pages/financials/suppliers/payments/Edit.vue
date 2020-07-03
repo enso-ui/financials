@@ -34,7 +34,7 @@
 
 <script>
 import { EnsoForm } from '@enso-ui/forms/bulma';
-import { Accessories, Comments, Documents } from '@enso-ui/accessories/bulma';
+import { Accessories, Comments, Documents } from '@enso-ui/bulma';
 import { Tab } from '@enso-ui/tabs/bulma';
 
 export default {
