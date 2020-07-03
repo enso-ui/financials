@@ -63,7 +63,7 @@ export default {
         EnsoTable, BooleanFilter, EnsoDateFilter, ClientFilter, EnsoSelectFilter, FilterState,
     },
 
-    inject: ['i18n', 'route'],
+    inject: ['i18n', 'route', 'toastr'],
 
     data: () => ({
         apiVersion: 1.2,
@@ -116,7 +116,7 @@ export default {
                 return;
             }
 
-            this.$toastr.warning('Pdf is only available for receipts');
+            this.toastr.warning('Pdf is only available for receipts');
         },
     },
 };
