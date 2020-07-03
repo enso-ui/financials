@@ -106,7 +106,7 @@ library.add(faTrashAlt, faPercentage);
 export default {
     inject: [
         'i18n', 'errorHandler', 'route', 'lines', 'chainRequest', 'invoice',
-        'updateInvoice', 'measurementUnits',
+        'updateInvoice', 'measurementUnits', 'toastr',
     ],
 
     directives: { selectOnFocus },
@@ -188,7 +188,7 @@ export default {
             }
 
             if (status === 409) {
-                this.$toastr.warning(data.message);
+                this.toastr.warning(data.message);
                 this.invoice.form.fetch();
                 return;
             }
