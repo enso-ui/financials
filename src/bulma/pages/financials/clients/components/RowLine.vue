@@ -57,7 +57,7 @@
                         :key="vat.id"
                         :selected="line.vatPercent === vat.id"
                         :value="vat.id">
-                        {{ vat.name }}%
+                        {{ vat.id }}%
                     </option>
                 </select>
             </div>
