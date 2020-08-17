@@ -68,7 +68,7 @@ export default {
     inject: ['i18n', 'route'],
 
     data: () => ({
-        apiVersion: 1.2,
+        apiVersion: 1.3,
         ready: false,
         filters: {
             client_invoices: {
@@ -94,7 +94,7 @@ export default {
         tableIntervals() {
             return {
                 client_invoices: {
-                    date: {
+                    due_date: {
                         min: this.intervals.min,
                         max: this.intervals.max,
                         dateFormat: null,

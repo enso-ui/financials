@@ -52,7 +52,7 @@ export default {
     inject: ['i18n'],
 
     data: () => ({
-        apiVersion: 1.2,
+        apiVersion: 1.3,
         ready: false,
         supplierParams: { is_supplier: true },
         filters: {
@@ -75,7 +75,7 @@ export default {
         tableIntervals() {
             return {
                 supplier_invoices: {
-                    date: {
+                    due_date: {
                         min: this.intervals.min,
                         max: this.intervals.max,
                         dateFormat: null,

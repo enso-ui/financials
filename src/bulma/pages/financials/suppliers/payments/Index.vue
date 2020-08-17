@@ -63,7 +63,7 @@ export default {
     inject: ['i18n'],
 
     data: () => ({
-        apiVersion: 1.2,
+        apiVersion: 1.3,
         ready: false,
         clientSource: null,
         clientId: null,
@@ -89,7 +89,7 @@ export default {
         tableIntervals() {
             return {
                 supplier_payments: {
-                    date: {
+                    due_date: {
                         min: this.intervals.min,
                         max: this.intervals.max,
                         dateFormat: null,
