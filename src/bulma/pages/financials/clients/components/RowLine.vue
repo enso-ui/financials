@@ -94,7 +94,7 @@
 </template>
 
 <script>
-import debounce from 'lodash/debounce';
+import { debounce } from 'lodash';
 import { mapState } from 'vuex';
 import Errors from '@enso-ui/laravel-validation';
 import { selectOnFocus } from '@enso-ui/directives';
@@ -144,7 +144,7 @@ export default {
             ), this.line).then(({ data }) => {
                 this.replace(data.line);
                 this.updateInvoice(data.invoice);
-            }).catch((error) => this.rowError(error, this.reload));
+            }).catch(error => this.rowError(error, this.reload));
 
             this.chainRequest(call);
         },
@@ -159,7 +159,7 @@ export default {
             ).then(({ data }) => {
                 this.lines().splice(this.index, 1);
                 this.updateInvoice(data.invoice);
-            }).catch((error) => this.rowError(error, this.reload));
+            }).catch(error => this.rowError(error, this.reload));
 
             this.chainRequest(call);
         },
