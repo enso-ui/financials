@@ -11,7 +11,7 @@
         </div>
         <enso-chart-card class="is-rounded raises-on-hover has-margin-bottom-large"
             :source="route('financials.stats.overview')"
-            :formatter="$options.filters.shortNumber"
+            short-numbers
             :params="filters">
             <template v-slot:default="{ config }">
                 <div class="columns"
@@ -31,14 +31,14 @@
 <script>
 
 import {
-    EnsoDateFilter, EnsoChartCard, InfoPanel,
+    EnsoChartCard, EnsoDateFilter, InfoPanel,
 } from '@enso-ui/bulma';
 
 export default {
     name: 'Index',
 
     components: {
-        EnsoDateFilter, EnsoChartCard, InfoPanel,
+        EnsoChartCard, EnsoDateFilter, InfoPanel,
     },
 
     inject: ['route'],
