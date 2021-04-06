@@ -2,7 +2,7 @@
     <div class="wrapper">
         <div class="columns is-centered is-multiline"
             v-if="ready">
-            <div class="column is-4">
+            <div class="column is-narrow">
                 <client-filter :params="params"
                     :filters="filters.client_payments"/>
             </div>

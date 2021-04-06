@@ -1,20 +1,21 @@
 <template>
-    <div class="columns">
+    <div class="columns client-filter">
         <div class="column is-narrow">
             <enso-filter class="box raises-on-hover"
                 v-model="params.client"
                 icons
-                :options="clientOptions"
+                :options="options"
                 :name="i18n('Clients')"
-                @input="$refs.selectFilter.clear()"/>
+                @input="update(null)"/>
         </div>
-        <div class="column">
-            <enso-select-filter class="box raises-on-hover"
-                v-model="clientId"
-                :source="clientSelectRoute"
-                :readonly="!clientSelectRoute"
+        <div class="column is-narrow"
+            v-if="params.client">
+            <enso-select-filter class="box raises-on-hover client-selector"
+                :value="clientId"
+                :source="route"
+                :readonly="!route"
                 :name="i18n('Client')"
-                @input="setClientId"
+                @input="update"
                 ref="selectFilter"/>
         </div>
     </div>
@@ -46,15 +47,18 @@ export default {
     },
 
     data: () => ({
-        clientId: null,
-        clientOptions: [
+        options: [
             { value: 'company', icon: 'building', class: null },
             { value: 'person', icon: 'user-tie', class: null },
         ],
     }),
 
     computed: {
-        clientSelectRoute() {
+        clientId() {
+            return this.filters.person_id
+                ?? this.filters.company_id;
+        },
+        route() {
             if (this.params.client === null) {
                 return null;
             }
@@ -64,36 +68,20 @@ export default {
         },
     },
 
-    watch: {
-        filters: {
-            handler() {
-                const clientId = this.filters.person_id || this.filters.company_id;
-
-                if (clientId) {
-                    this.clientId = clientId;
-                }
-            },
-            immediate: true,
-        },
-    },
-
     methods: {
-        setClientId(id) {
-            switch (this.params.client) {
-            case 'company':
-                this.filters.person_id = null;
-                this.filters.company_id = id;
-                break;
-            case 'person':
-                this.filters.person_id = id;
-                this.filters.company_id = null;
-                break;
-            default:
-                this.filters.person_id = null;
-                this.filters.company_id = null;
-                break;
-            }
+        update(id) {
+            const { client } = this.params;
+
+            this.filters.person_id = client === 'person' ? id : null;
+            this.filters.company_id = client === 'company' ? id : null;
         },
     },
 };
 </script>
+<style lang="scss">
+@media screen and (min-width: 769px) {
+    .client-filter .client-selector {
+        width: 14rem;
+    }
+}
+</style>
