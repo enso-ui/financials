@@ -2,15 +2,9 @@
     <div class="wrapper">
         <div class="columns is-centered is-multiline"
             v-if="ready">
-            <div class="column is-narrow">
+            <div class="column is-5">
                 <client-filter :params="params"
                     :filters="filters.client_invoices"/>
-            </div>
-            <div class="column is-narrow">
-                <enso-date-filter class="box raises-on-hover"
-                    v-model="params.dateInterval"
-                    :name="i18n('Date')"
-                    :interval="intervals"/>
             </div>
             <div class="column is-narrow">
                 <boolean-filter class="box raises-on-hover"
@@ -24,6 +18,19 @@
                     hide-off
                     :options="enums.invoiceTypes._filter()"
                     :name="i18n('Type')"/>
+            </div>
+            <div class="column is-narrow">
+                <enso-date-filter class="box raises-on-hover"
+                    v-model="params.dateInterval"
+                    :name="i18n('Date')"
+                    :interval="intervals"/>
+            </div>
+            <div class="column is-narrow">
+                <enso-filter class="box raises-on-hover"
+                    v-model="invoiceFilter"
+                    hide-off
+                    :options="invoiceFilters"
+                    :name="i18n('Date Filter')"/>
             </div>
         </div>
         <enso-table class="box is-paddingless raises-on-hover"
@@ -86,6 +93,11 @@ export default {
             client: null,
             dateInterval: 'thisMonth',
         },
+        invoiceFilters: [
+            { label: 'Date', value: 'date' },
+            { label: 'Due Date', value: 'due_date' },
+        ],
+        invoiceFilter: 'date',
     }),
 
     computed: {
@@ -94,7 +106,7 @@ export default {
         tableIntervals() {
             return {
                 client_invoices: {
-                    due_date: {
+                    [this.invoiceFilter]: {
                         min: this.intervals.min,
                         max: this.intervals.max,
                         dateFormat: null,

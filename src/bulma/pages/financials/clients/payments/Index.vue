@@ -2,21 +2,9 @@
     <div class="wrapper">
         <div class="columns is-centered is-multiline"
             v-if="ready">
-            <div class="column is-narrow">
+            <div class="column is-4">
                 <client-filter :params="params"
                     :filters="filters.client_payments"/>
-            </div>
-            <div class="column is-narrow">
-                <enso-date-filter class="box raises-on-hover"
-                    v-model="params.dateInterval"
-                    :name="i18n('Date')"
-                    :interval="intervals"/>
-            </div>
-            <div class="column is-narrow">
-                <boolean-filter class="box raises-on-hover"
-                    v-model="filters.client_payments.is_cancelled"
-                    icons
-                    :name="i18n('Cancelled')"/>
             </div>
             <div class="column is-6-tablet is-4-desktop is-3-widescreen">
                 <enso-select-filter class="box raises-on-hover"
@@ -24,6 +12,18 @@
                     multiple
                     :options="enums.paymentTypes._select()"
                     :name="i18n('Type')"/>
+            </div>
+            <div class="column is-narrow">
+                <boolean-filter class="box raises-on-hover"
+                    v-model="filters.client_payments.is_cancelled"
+                    icons
+                    :name="i18n('Cancelled')"/>
+            </div>
+            <div class="column is-narrow">
+                <enso-date-filter class="box raises-on-hover"
+                    v-model="params.dateInterval"
+                    :name="i18n('Date')"
+                    :interval="intervals"/>
             </div>
         </div>
         <enso-table class="box is-paddingless raises-on-hover"

@@ -20,6 +20,13 @@
                     :name="i18n('Date')"
                     :interval="intervals"/>
             </div>
+            <div class="column is-narrow">
+                <enso-filter class="box raises-on-hover"
+                    v-model="invoiceFilter"
+                    hide-off
+                    :options="invoiceFilters"
+                    :name="i18n('Date Filter')"/>
+            </div>
         </div>
         <enso-table class="box is-paddingless raises-on-hover"
             id="outInvoices"
@@ -39,14 +46,16 @@
 <script>
 import { mapState } from 'vuex';
 import { EnsoTable } from '@enso-ui/tables/bulma';
-import { BooleanFilter, EnsoDateFilter, EnsoSelectFilter } from '@enso-ui/filters/bulma';
+import {
+    BooleanFilter, EnsoDateFilter, EnsoSelectFilter, EnsoFilter,
+} from '@enso-ui/filters/bulma';
 import { FilterState } from '@enso-ui/filters/renderless';
 
 export default {
     name: 'Index',
 
     components: {
-        EnsoTable, BooleanFilter, EnsoDateFilter, EnsoSelectFilter, FilterState,
+        EnsoTable, BooleanFilter, EnsoDateFilter, EnsoSelectFilter, FilterState, EnsoFilter,
     },
 
     inject: ['i18n'],
@@ -68,6 +77,11 @@ export default {
         params: {
             dateInterval: 'thisMonth',
         },
+        invoiceFilters: [
+            { label: 'Date', value: 'date' },
+            { label: 'Due Date', value: 'due_date' },
+        ],
+        invoiceFilter: 'date',
     }),
 
     computed: {
@@ -75,7 +89,7 @@ export default {
         tableIntervals() {
             return {
                 supplier_invoices: {
-                    due_date: {
+                    [this.invoiceFilter]: {
                         min: this.intervals.min,
                         max: this.intervals.max,
                         dateFormat: null,
